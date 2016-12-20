@@ -1,5 +1,7 @@
 # simplock
 
+[![Build Status](https://travis-ci.org/apoutchika/simplock.svg?branch=master)](https://travis-ci.org/apoutchika/simplock)
+
 > Simple lock async function with key
 
 ## Install
