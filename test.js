@@ -2,12 +2,12 @@
 
 require('chai').should();
 
-const lock = require('./index');
-const v = {};
+var lock = require('./index');
+var v = {};
 
 function finish(key){
     return function(done){
-        setTimeout(function() { 
+        setTimeout(function() {
             v[key] = true;
             return done();
         }, 200);
@@ -20,7 +20,7 @@ describe("Test lock function", function(){
         v.a = false;
         lock('toto', 2000, finish('a'));
         v.a.should.equal(false);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.a.should.equal(true);
         }, 250);
 
@@ -28,35 +28,35 @@ describe("Test lock function", function(){
         v.ab = false;
         lock('totob', 2000, finish('ab'));
         v.a.should.equal(false);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.a.should.equal(true);
         }, 250);
 
         v.b = false;
         lock('toto', 2000, finish('b'));
         v.b.should.equal(false);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.b.should.equal(false);
         }, 250);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.b.should.equal(true);
         }, 450);
 
         v.c = false;
         lock('toto', 2000, finish('c'));
         v.c.should.equal(false);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.c.should.equal(false);
         }, 250);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.c.should.equal(false);
         }, 450);
-        setTimeout(function() { 
+        setTimeout(function() {
             v.c.should.equal(true);
         }, 650);
 
 
-        setTimeout(function() { 
+        setTimeout(function() {
             done();
         }, 800);
     });
@@ -74,12 +74,12 @@ describe("Test lock function", function(){
         v.d.should.equal(false);
         v.e.should.equal(false);
 
-        setTimeout(function() { 
+        setTimeout(function() {
             v.e.should.equal(true);
         }, 80);
 
-        setTimeout(function() { 
-            done(); 
+        setTimeout(function() {
+            done();
         }, 500);
     });
 });
