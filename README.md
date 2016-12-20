@@ -14,6 +14,9 @@ $ npm install --save simplock
 * String = null: Timeout. Default no timeout (milliseconds)
 * Function : Callback, execute first parameter for unlock
 
+If the same key is send, the callback is pushed in queue. When you use done()
+then next function in queue is executed.
+
 ## Examples
 
 ```js
@@ -27,8 +30,9 @@ simplock('lock key', 2000, function(done){ // 'lock key' expire in 2seconds
 })
 
 
+// Exemple with fs
 simplock('file-write-'+path, 2000, function(done){
-    fs.writeAsync('/path/to/media/'+path, function(){
+    fs.writeFile('/path/to/media/'+path, 'Hello world', function(err){
         done(); // 'file-write-'+path is unlocked
     });
 });
