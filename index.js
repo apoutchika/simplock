@@ -45,6 +45,9 @@ module.exports = function(key, delay, cb) {
         }
     }
     else {
-        locks[key].push({delay, cb});
+        locks[key].push({
+            delay: delay,
+            cb: cb
+        });
     }
 };
